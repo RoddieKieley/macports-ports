@@ -5,7 +5,13 @@ PortGroup           cmake 1.0
 
 name                qpid-proton
 description         A Qpid Proton description goes here
-version             0.18.1
+long_description \
+    Qpid Proton is a high-performance, lightweight messaging library. It can \
+    be used in the widest range of messaging applications, including brokers, \
+    client libraries, routers, bridges, proxies, and more. Proton makes it \
+    trivial to integrate with the AMQP 1.0 ecosystem from any platform, \
+    environment, or language.
+version             0.19.0
 categories          net
 license             Apache-2
 maintainers         @roddiekieley
@@ -15,7 +21,6 @@ homepage            https://qpid.apache.org
 fetch.type          git
 git.url             git://github.com/roddiekieley/qpid-proton.git
 git.branch          PROTON-522
-#build.dir           ${worksrcpath}/build
 
 cmake.out_of_source yes
 
@@ -23,5 +28,6 @@ configure.args-append \
                     -DCMAKE_INSTALL_RPATH:STRING="${prefix}/lib" \
                     -DCMAKE_INSTALL_NAME_DIR:STRING="${prefix}/lib" \
                     -DSASL_IMPL=none \
-                    -DSSL_IMPL=none
+                    -DSSL_IMPL=none \
+                    -DLIB_SUFFIX=""
 
