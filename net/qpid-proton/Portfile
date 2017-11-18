@@ -1,0 +1,48 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           cmake 1.0
+
+name                qpid-proton
+description         A Qpid Proton description goes here
+long_description \
+    Qpid Proton is a high-performance, lightweight messaging library. It can \
+    be used in the widest range of messaging applications, including brokers, \
+    client libraries, routers, bridges, proxies, and more. Proton makes it \
+    trivial to integrate with the AMQP 1.0 ecosystem from any platform, \
+    environment, or language.
+version             0.19.0
+categories          net
+license             Apache-2
+maintainers         @roddiekieley
+platforms           darwin freebsd linux
+homepage            https://qpid.apache.org
+
+fetch.type          git
+git.url             git://github.com/apache/qpid-proton.git
+git.branch          fa80534c87940b44fefd36abff4c5a9a79b99f47
+
+cmake.out_of_source yes
+
+configure.args-append \
+                    -DCMAKE_INSTALL_RPATH:STRING="${prefix}/lib" \
+                    -DCMAKE_INSTALL_NAME_DIR:STRING="${prefix}/lib" \
+                    -DSASL_IMPL=none \
+                    -DSSL_IMPL=none \
+                    -DLIB_SUFFIX=""
+
+default_variants +swig +openssl
+
+variant openssl description {With built-in support for OpenSSL} {
+    configure.args-replace -DSSL_IMPL=none -DSSL_IMPL=openssl
+    depends_lib     port:openssl
+}
+
+variant swig description {With built-in support for SWIG so the bindings can be built} {
+    depends_lib     port:swig \
+                    port:swig-ruby \
+                    port:swig-python \
+                    port:swig-perl \
+                    port:swig-java \
+                    port:swig-go
+}
