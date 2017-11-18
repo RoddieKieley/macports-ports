@@ -1,0 +1,27 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+
+PortSystem          1.0
+PortGroup           cmake 1.0
+
+name                qpid-proton
+description         A Qpid Proton description goes here
+version             0.18.1
+categories          net
+license             Apache-2
+maintainers         @roddiekieley
+platforms           darwin freebsd linux
+homepage            https://qpid.apache.org
+
+fetch.type          git
+git.url             git://github.com/roddiekieley/qpid-proton.git
+git.branch          PROTON-522
+#build.dir           ${worksrcpath}/build
+
+cmake.out_of_source yes
+
+configure.args-append \
+                    -DCMAKE_INSTALL_RPATH:STRING="${prefix}/lib" \
+                    -DCMAKE_INSTALL_NAME_DIR:STRING="${prefix}/lib" \
+                    -DSASL_IMPL=none \
+                    -DSSL_IMPL=none
+
