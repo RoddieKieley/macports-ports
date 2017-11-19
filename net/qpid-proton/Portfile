@@ -31,3 +31,18 @@ configure.args-append \
                     -DSSL_IMPL=none \
                     -DLIB_SUFFIX=""
 
+default_variants +swig +openssl
+
+variant cyrus_sasl description {With built-in support for Cyrus SASL} {
+    configure.args-replace -DSASL_IMPL=none -DSASL_IMPL=cyrus
+    depends_lib     port:cyrus-sasl
+}
+
+variant openssl description {With built-in support for OpenSSL} {
+    configure.args-replace -DSSL_IMPL=none -DSSL_IMPL=openssl
+    depends_lib     port:openssl
+}
+
+variant swig description {With built-in support for SWIG so the bindings can be built} {
+    depends_lib     port:swig
+}
