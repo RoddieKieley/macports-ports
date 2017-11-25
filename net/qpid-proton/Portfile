@@ -20,7 +20,7 @@ homepage            https://qpid.apache.org
 
 fetch.type          git
 git.url             git://github.com/apache/qpid-proton.git
-git.branch          master
+git.branch          fa80534c87940b44fefd36abff4c5a9a79b99f47
 
 cmake.out_of_source yes
 
