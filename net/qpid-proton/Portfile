@@ -19,8 +19,8 @@ platforms           darwin freebsd linux
 homepage            https://qpid.apache.org
 
 fetch.type          git
-git.url             git://github.com/roddiekieley/qpid-proton.git
-git.branch          PROTON-522
+git.url             git://github.com/apache/qpid-proton.git
+git.branch          master
 
 cmake.out_of_source yes
 
