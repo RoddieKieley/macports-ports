@@ -44,5 +44,10 @@ variant openssl description {With built-in support for OpenSSL} {
 }
 
 variant swig description {With built-in support for SWIG so the bindings can be built} {
-    depends_lib     port:swig
+    depends_lib     port:swig \
+                    port:swig-ruby \
+                    port:swig-python \
+                    port:swig-perl \
+                    port:swig-java \
+                    port:swig-go
 }
